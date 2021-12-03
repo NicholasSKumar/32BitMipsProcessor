@@ -51,7 +51,7 @@ module RegisterFile(rdwr,addr1,addr2,rdout1,rdout2,addr3,data3,clk);
 		assign rdout1 = mem_reg[addr1];
 		assign rdout2 = mem_reg[addr2];
 
-	always@ (clk)
+	always@ (negedge clk)
 	begin
 		if(rdwr==1'b1)
 		begin
