@@ -18,13 +18,19 @@ always@(*)begin
 
 		case(Instruction) 
 		
-		6'bxx0000: ALUInput = 4'b0010;
+		6'bxx0000: ALUInput = 4'b0010; //add ww 
 		
-		6'bxx0010: ALUInput = 4'b0110;
+		6'bxx0010: ALUInput = 4'b0110; //sub ww
 
-		6'bxx0000: ALUInput = 4'b0001;
+		6'bxx0101: ALUInput = 4'b0001; //or ww
 
-		6'bxx0010: ALUInput = 4'b0111;
+		6'bxx1010: ALUInput = 4'b0111; //slt ww
+
+		6'bxx0100: ALUInput = 4'b0000; //and ww
+
+		6'bxx0111: ALUInput = 4'b0011; //nor w new define
+
+		6'bxx0110: ALUInput = 4'b0100; //xor w new define
 		
 		default: ALUInput = 4'bXXXX;
 
