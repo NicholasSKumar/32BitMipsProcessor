@@ -31,6 +31,10 @@ always@(*)begin
 		6'bxx0111: ALUInput = 4'b0011; //nor w new define
 
 		6'bxx0110: ALUInput = 4'b0100; //xor w new define
+	
+		6'bxx1000: ALUInput = 4'b1010; //Mul w new define
+
+		6'bxx1111: ALUInput = 4'b1111; //Mul w new define
 		
 		default: ALUInput = 4'bXXXX;
 
