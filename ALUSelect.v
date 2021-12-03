@@ -7,9 +7,9 @@ module ALUSelect(
 	wire overFlow1,overFlow2;
 	
 	wire [31:0] add,sub,mul,quo,rem;
-	ThirtyTwoBitSub u1 (.B(B),.A(A),.cin(1'b0),.Diff(add),.cout(cout1),.overFlow(overFlow1));
-	ThirtyTwoBitSub u2 (.B(B),.A(A),.cin(1'b1),.Diff(sub),.cout(cout2),.overFlow(overFlow2));
-	Multiplier u3 (.B(B[15:0]),.A(A[15:0]),.product(mul));
+	ThirtyTwoBitSub u1 (.B(B),.A(A),.cin(1'b0),.Diff(add));
+	ThirtyTwoBitSub u2 (.B(B),.A(A),.cin(1'b1),.Diff(sub));
+	ThirtyTwoBitMulti u3 (.B(B[15:0]),.A(A[15:0]),.product(mul));
 	Div u4 (.A(A),.B(B),.quo(quo),.rem(rem));
 	always@(*) begin 
 		case (FunctC)

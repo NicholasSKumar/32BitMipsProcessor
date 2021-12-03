@@ -34,7 +34,7 @@ always@(*)begin
 	
 		6'bxx1000: ALUInput = 4'b1010; //Mul w new define
 
-		6'bxx1111: ALUInput = 4'b1111; //Mul w new define
+		6'bxx1111: ALUInput = 4'b1111; //Div w new define
 		
 		default: ALUInput = 4'bXXXX;
 
