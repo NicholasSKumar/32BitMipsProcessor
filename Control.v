@@ -92,7 +92,7 @@ module Control(
 			ALUSrc = ;
 			RegWrite = ;
 			end 
-		6'b011010: begin
+		6'b101111: begin
 			//div
 			RegDest = ;
 			Branch = ;
@@ -103,7 +103,7 @@ module Control(
 			ALUSrc = ;
 			RegWrite = ;
 			end 
-		6'b011000: begin
+		6'b101000: begin
 			//mult
 			RegDest = ;
 			Branch = ;
