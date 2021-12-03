@@ -2,7 +2,7 @@ module ALUSelect(
 	input [3:0] FunctC,
 	input [31:0] A,B,
 	output reg [31:0] ALUOut,
-	output Zero);
+	output reg Zero);
 	wire cout1,cout2;
 	wire overFlow1,overFlow2;
 	
@@ -28,9 +28,10 @@ module ALUSelect(
 
 			4'b1010: ALUOut = mul;		//madeup FunctC
 
-			4'b1011: ALUOut = quo;	 	//madeupFunctC
+			4'b1111: ALUOut = quo;	 	//madeupFunctC
 
 			default: ALUOut = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
 		endcase
+		if (ALUOut == 0) Zero = 1;
 	end
 endmodule
