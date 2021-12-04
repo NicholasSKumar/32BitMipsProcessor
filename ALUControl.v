@@ -7,7 +7,12 @@ module ALUcontrol(
 always@(*)begin
 
 	if(ALUOp == 2'b00) begin
+		if (Instruction == 000100)begin 
+			ALUInput = 4'b0110;
+		end
+		else begin
 			ALUInput = 4'b0010;
+		end
 	end
 
 	else if(ALUOp == 2'bx1)begin
