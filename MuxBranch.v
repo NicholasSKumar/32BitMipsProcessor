@@ -1,8 +1,8 @@
 module MuxBranch(
+	input Branch,
 	input [31:0] ALUResult,
 	input [31:0] OtherAddr,
-	input Branch,
-	output Addr);
+	output [31:0] Addr);
 
 	assign Addr = (Branch) ? ALUResult : OtherAddr;
 endmodule 
