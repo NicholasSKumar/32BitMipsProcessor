@@ -24,4 +24,4 @@ Decode(output rd_out1, rd_out2, sign_extend, input instruction, wr_data, clk, Re
 			else begin
 				rdwr = 1;
 			end
-			RegisterFile RF0(.rdwr(rdwr),.addr1(),.addr2(),.rdout1(),.rdout2(),.addr3(),.data3(),.clk());
+			reg_file RF0(.rdwr(rdwr),.addr1(),.addr2(),.rdout1(),.rdout2(),.addr3(),.data3(),.clk());

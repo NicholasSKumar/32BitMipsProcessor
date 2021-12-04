@@ -1,8 +1,7 @@
-module RegisterFile(rdwr,addr1,addr2,rdout1,rdout2,addr3,data3,clk);
+module reg_file(rdwr,addr1,addr2,rdout1,rdout2,addr3,data3,clk);
 
 	input rdwr;  	//A signal that decides whether we write into file (if 1 -> write)
-	input [4:0] addr1;	//In case of read, the address of first register
-	input [4:0] addr2;	//In case of read, the address of second register
+	input [4:0] addr1, addr2;
 	output [31:0] rdout1;	//In case of read, the value of the first register
 	output [31:0] rdout2;	//In case of read, the value of the second register
 	input [4:0] addr3;	//In case of write, the address of the register in which to write
