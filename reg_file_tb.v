@@ -1,49 +1,50 @@
 module reg_file_tb;
 	reg[4:0] addr1, addr2, addr3;
 	reg[31:0] data3;
+	reg wr;
 	wire[31:0] rdout1, rdout2;
 
-	reg_file uut (.addr1, .addr2, .rdout1, .rdout2, .addr3, .data3);
+	reg_file uut (.wr, .addr1, .addr2, .rdout1, .rdout2, .addr3, .data3);
 
 	initial begin 
 		//clk = 0;
-		//wr = 1;
+		wr = 1;
 
 		addr3 = 5'b01010;
 		data3 = 16'hffff;
 
 		#40;
 
-		//wr = 0;
+		wr = 0;
 		addr1 = 5'b01010;
 
 		#40;
 
-		//wr = 1;
+		wr = 1;
 		addr3 = 5'b01110;
 		data3 = 16'hff00;
 
 		#40;
 
-		//wr = 0;
+		wr = 0;
 		addr1 = 5'b01110;
 		
 		#40;
 
-		//wr = 1;
+		wr = 1;
 		addr3 = 5'b11111;
 		data3 = 16'haaaa;
 
 		#40;
 
-		//wr = 0;
+		wr = 0;
 
 		addr1 = 5'b11111;
 		addr2 = 5'b01010;
 
 		#40;
 
-		//wr = 1;
+		wr = 1;
 
 		addr1 = 5'b01110;
 		addr2 = 5'b01010;
