@@ -1,4 +1,4 @@
-module MuxBranch(
+module MuxJump(
 	input Jump,
 	input [31:0] ALUResult,
 	input [31:0] OtherAddr,
