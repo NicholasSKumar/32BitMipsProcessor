@@ -13,7 +13,6 @@ module ALUSelect(
 	Div u4 (.A(A),.B(B),.quo(quo),.rem(rem));
 	always@(*) begin 
 		case (FunctC)
-
 			4'b0010: ALUOut = add;
 
 			4'b0110: ALUOut = sub;
@@ -30,8 +29,9 @@ module ALUSelect(
 
 			4'b1111: ALUOut = quo;	 	//madeupFunctC
 
-			default: ALUOut = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
+			default: ALUOut = 32'bxxxxxxxxxxxxxxxxx11xxxxxxxxxxxxx;
 		endcase
 		if (ALUOut == 0) Zero = 1;
+		else Zero = 0;
 	end
 endmodule
