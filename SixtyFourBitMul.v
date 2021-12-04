@@ -52,6 +52,6 @@ module SixtyFourBitMul(
 	SMultiplierLogic u28 (.A(A),.B(B[30]),.pS(sum28),.pcin(c0[28]),.sum(sum29),.prodVal(product[30]),.carry(c0[29]));
 	SMultiplierLogic u29 (.A(A),.B(B[31]),.pS(sum29),.pcin(c0[29]),.sum(sum30),.prodVal(product[31]),.carry(c0[30]));
 	
-	assign product[63:32] = {c0[30],sum29[31:1]};
+	assign product[63:32] = {c0[30],sum30[31:1]};
 	
 endmodule
