@@ -1,13 +1,11 @@
-module reg_file(rdwr,addr1,addr2,rdout1,rdout2,addr3,data3,clk);
+module reg_file(addr1,addr2,rdout1,rdout2,addr3,data3);
 
-	input rdwr;  	//A signal that decides whether we write into file (if 1 -> write)
+	//input wr;  	//A signal that decides whether we write into file (if 1 -> write)
 	input [4:0] addr1, addr2;
 	output [31:0] rdout1;	//In case of read, the value of the first register
 	output [31:0] rdout2;	//In case of read, the value of the second register
 	input [4:0] addr3;	//In case of write, the address of the register in which to write
 	input [31:0] data3;	//In case of write, the value to be written
-	
-	input clk;
 
 	reg [31:0] mem_reg [31:0];
 
@@ -45,17 +43,12 @@ module reg_file(rdwr,addr1,addr2,rdout1,rdout2,addr3,data3,clk);
         	mem_reg[30] = 32'b00000000000010100010000000000000;
         	mem_reg[31] = 32'b00000000000000010000100101100000;
 
+		mem_reg[addr3] = data3;
+
 	end
 
 		assign rdout1 = mem_reg[addr1];
 		assign rdout2 = mem_reg[addr2];
 
-	always@ (negedge clk)
-	begin
-		if(rdwr==1'b1)
-		begin
-		 mem_reg[addr3] = data3;
-		end
-	end
 
 endmodule
