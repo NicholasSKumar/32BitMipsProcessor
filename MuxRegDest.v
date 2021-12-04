@@ -4,5 +4,5 @@ module MuxRegDest(
 	input RegDest,
 	output [4:0] WriteReg);
 
-	assign WriteReg = (RegDest) ? twentyInst : fifteenInst;
+	assign WriteReg = (RegDest) ? fifteenInst : twentyInst;
 endmodule 
