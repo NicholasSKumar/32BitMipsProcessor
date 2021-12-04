@@ -8,7 +8,7 @@ module Jump(
 	wire [31:0] temp1,jumpAddr;
 	
 	ShiftLeftTwo u0 (.inaddr(instruction),.outaddr(temp1));
-	assign jumpAddr = {[31:28]previousPC4,[27:0]temp1};
+	assign jumpAddr = {previousPC4[31:28],temp1[27:0]};
 	
 	MuxJump u1 (.Jump(Jump),.ALUResult(MuxResult),.OtherAddr(jumpAddr),.Addr(currentPC4));
 		
