@@ -23,9 +23,9 @@ always@(*)begin
 
 		case(Instruction) 
 		
-		6'bxx0000: ALUInput = 4'b0010; //add ww 
+		6'bxx0000: ALUInput = 4'b0010; //add ww w
 		
-		6'bxx0010: ALUInput = 4'b0110; //sub ww
+		6'bxx0010: ALUInput = 4'b0110; //sub ww 
 
 		6'bxx0101: ALUInput = 4'b0001; //or ww
 
@@ -35,9 +35,9 @@ always@(*)begin
 
 		6'bxx0111: ALUInput = 4'b0011; //nor w new define
 
-		6'bxx0110: ALUInput = 4'b0100; //xor w new define
+		//6'bxx0110: ALUInput = 4'b0100; //xor w new define
 	
-		6'bxx1000: ALUInput = 4'b1010; //Mul w new define
+		6'bxx1000: ALUInput = 4'b1010; //Mult w new define
 
 		6'bxx1111: ALUInput = 4'b1111; //Div w new define
 		

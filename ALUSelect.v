@@ -23,7 +23,7 @@ module ALUSelect(
 
 			4'b0011: ALUOut = ~(A|B);	//nor madeup FunctC
 			
-			4'b0100: ALUOut = A^B; 		//xor madeup FunctC
+			//4'b0100: ALUOut = A^B; 		//xor madeup FunctC
 
 			4'b1010: ALUOut = mul;		//madeup FunctC
 
