@@ -1,12 +1,14 @@
 module Fetch(
-	input [31:0] previous,
-	input clk, reset,
+	input [31:0] BranchMuxResult,
+	input clk, reset,Jump,
 	output [31:0] inst,
-	output [31:0] currentaddr);
+	output [31:0] currentAddr);
 	
-	reg [31:0] current,instruction,check;
-	PCAdder u2 (.address(current),.outaddress(currentaddr));
-	PC u1(.inaddr(previous),.clk(clk),.outaddr(current));
+	reg [31:0] current,instruction,check,previous,AdderResult;
+
+	PCAdder u2 (.address(currentAddr),.outaddress(AdderResult));
+	Jump u4 (.previousPC4(AdderResult),.instruction(inst),.MuxResult(BranchMuxResult),.Jump(Jump),.currentPC4(previous));
+	PC u1(.inaddr(previous),.clk(clk),.outaddr(currentAddr));
 	instruction_mem u3 (.addr_in(check),.reset(reset),.instr_out(inst));
 
 	//this may cause issues because we are going to have to hope the correct instruction
@@ -14,7 +16,6 @@ module Fetch(
 	
 	//always @(posedge clk) begin
 	always@(*) begin
-		check = current;
+		check = currentAddr;
 	end
-
-endmodule 
+endmodule
