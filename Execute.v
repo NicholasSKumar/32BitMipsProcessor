@@ -9,7 +9,8 @@ module Execute(
 	output [31:0] ALUResult,
 	output [31:0] MX2);
 	
-	wire [31:0] B,Zero,SL2,ALUAres,Branch2;
+	wire [31:0] B,SL2,ALUAres;
+	wire Zero,Branch2;
 	
 
 	MuxALUSRC u0 (.regRead(mem2Read),.signExnd(signExnd),.ALUSrc(ALUSrc),.ALUvalue(B));
@@ -18,8 +19,8 @@ module Execute(
 	ShiftLeftTwo u3 (.inaddr(signExnd),.outaddr(SL2));
 	ThirtyTwoBitSub u4 (.A(instruct),.B(SL2),.cin(1'b0),.Diff(ALUAres));
 	
-	assign Branch2 = Branch&Zero;
+	assign Branch2 = Branch&&Zero;
 	
-	MuxBranch u5 (.ALUResult(ALUAres),.OtherAddr(address),.Branch(MX2));
+	MuxBranch u5 (.ALUResult(ALUAres),.OtherAddr(address),.Branch(Branch2),.Addr(MX2));
 	
 endmodule
