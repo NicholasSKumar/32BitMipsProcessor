@@ -8,7 +8,8 @@ module Control(
 	output [1:0] ALUOp,
 	output MemWrite,
 	output ALUSrc,
-	output RegWrite);
+	output RegWrite
+	output Jump);
 	//issue using always @(*) could be that if we have two add statements the input wouldnt change 
 	//and nothing would update
 	//always @(posedge clk
@@ -25,6 +26,7 @@ module Control(
 			MemWrite = ;
 			ALUSrc = ;
 			RegWrite = ;
+			Jump = ;
 			end 
 		6'b100101: begin
 			//or
