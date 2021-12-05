@@ -5,8 +5,11 @@ module ALUSelect(
 	output reg Zero);
 	wire cout1,cout2;
 	wire overFlow1,overFlow2;
+	reg [31:0] him, lom, hid, lod;
+	reg flag;
 	
-	wire [31:0] add,sub,mul,quo,rem;
+	wire [31:0] add,sub,quo,rem;
+	wire [63:0] mul;
 	ThirtyTwoBitSub u1 (.B(B),.A(A),.cin(1'b0),.Diff(add));
 	ThirtyTwoBitSub u2 (.B(B),.A(A),.cin(1'b1),.Diff(sub));
 	ThirtyTwoBitMulti u3 (.B(B[15:0]),.A(A[15:0]),.product(mul));
@@ -25,9 +28,23 @@ module ALUSelect(
 			
 			//4'b0100: ALUOut = A^B; 		//xor madeup FunctC
 
-			4'b1010: ALUOut = mul;		//madeup FunctC
+			4'b1010: begin			//madeup FunctC mul
+				him = mul[63:32];
+				lom = mul[31:0];
+				flag = 1;		
+			end
 
-			4'b1111: ALUOut = quo;	 	//madeupFunctC
+			4'b1111: begin			//madeup FunctC div
+				hid = rem;
+				lod = quo;
+				flag = 0;	 	
+			end
+			4'b0101: begin			//madeup FunctC mfhi
+				ALUOut = (flag) ? him : hid;
+			end
+			4'b0111: begin			//madeup FunctC mflo
+				ALUOut = (flag) ? lom : lod;
+			end
 
 			default: ALUOut = 32'bxxxxxxxxxxxxxxxxx11xxxxxxxxxxxxx;
 		endcase
