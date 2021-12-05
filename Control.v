@@ -78,14 +78,14 @@ module Control(
 			end 
 		6'b101010: begin
 			//slt
-			RegDest = 0;
+			RegDest = 1;
 			Jump = 0;
 			Branch = 0;
 			MemRead = 0;
 			MemtoReg = 0;
 			ALUOp = 2'b10;
 			MemWrite = 0;
-			ALUSrc = 1;
+			ALUSrc = 0;
 			RegWrite = 1;
 			end 
 		6'b001000: begin
