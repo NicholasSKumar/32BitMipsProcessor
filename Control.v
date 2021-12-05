@@ -102,7 +102,7 @@ module Control(
 			end 
 		6'b101111: begin
 			//div
-			RegDest = 1;
+			RegDest = 0;
 			Jump = 0;
 			Branch = 0;
 			MemRead = 0;
@@ -114,7 +114,7 @@ module Control(
 			end 
 		6'b101000: begin
 			//mult
-			RegDest = 1;
+			RegDest = 0;
 			Jump = 0;
 			Branch = 0;
 			MemRead = 0;
@@ -122,7 +122,7 @@ module Control(
 			ALUOp = 2'b10;
 			MemWrite = 0;
 			ALUSrc = 0;
-			RegWrite = 1;
+			RegWrite = 0;
 			end 
 		6'b100011: begin
 			//lw
@@ -150,7 +150,7 @@ module Control(
 			end 
 		6'b010000: begin
 			//mfhi
-			RegDest = 1;
+			RegDest = 0;
 			Jump = 0;
 			Branch = 0;
 			MemRead = 0;
@@ -162,7 +162,7 @@ module Control(
 			end 
 		6'b010010: begin
 			//mflo
-			RegDest = 1;
+			RegDest = 0;
 			Jump = 0;
 			Branch = 0;
 			MemRead = 0;
