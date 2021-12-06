@@ -16,11 +16,13 @@ module CPU();
 
 /////////////////////////////INITIAL BLOCKS///////////////////////////////////////////////////////
 	initial begin
-	assign reset = 1;
-	#1
-	assign reset = 0;
-	assign clk = 1;
+		reset = 1;
+		#1
+		reset = 0;
+		clk = 1;
 	end
+
+	assign BranchMux = 32'b0;
 	
 	always #5 clk = ~clk;
 	
