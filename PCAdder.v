@@ -7,6 +7,6 @@ module PCAdder(
 	
 	assign four =  32'b00000000000000000000000000000100;
 	
-	ThirtyTwoBitAdder u1 (.A(addreess),.B(four),.cin(1'b0),.sum(outaddreess),.cout(cout),.overFlow(cout));
+	ThirtyTwoBitAdder u1 (.A(address),.B(four),.cin(1'b0),.sum(outaddress),.cout(cout),.overFlow(cout));
 
 endmodule 
