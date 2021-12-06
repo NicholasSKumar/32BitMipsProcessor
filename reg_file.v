@@ -46,7 +46,7 @@ module reg_file(wr,addr1,addr2,rdout1,rdout2,addr3,data3,clk);
 
 	end
 
-	always @(clk) begin
+	always @(negedge clk) begin
 		if(wr == 1) begin
 			mem_reg[addr3] = data3;
 		end
