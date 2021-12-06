@@ -14,6 +14,6 @@ module Decode(rd_out1, rd_out2, sign_extend, instruction, wr_data, RegDst, RegWr
 	assign sign_ex_in = instruction[15:0];
 
 	MuxRegDest MRD0(.twentyInst(rd_reg2) ,.fifteenInst(wr_reg) ,.RegDest(RegDst) ,.WriteReg(WriteReg));
-	reg_file RF0(.wr(RegWrite), .addr1(rd_reg1),.addr2(rd_reg2),.rdout1(rd_out1),.rdout2(rd_out2),.addr3(WriteReg),.data3(wr_data));
+	reg_file RF0(.wr(RegWrite), .addr1(rd_reg1),.addr2(rd_reg2),.rdout1(rd_out1),.rdout2(rd_out2),.addr3(WriteReg),.data3(wr_data),.clk(clk));
 	SignExtend SE0(.unextended(sign_ex_in), .extended(sign_extend));
 endmodule
