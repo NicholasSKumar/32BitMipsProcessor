@@ -11,7 +11,7 @@ module reg_file(wr,addr1,addr2,rdout1,rdout2,addr3,data3,clk);
 	reg [31:0] mem_reg [31:0];
 
 	initial begin
-		mem_reg[0] = 32'b00000000000000000000000000001010; //zero		//Register File initialized with random values
+		mem_reg[0] = 32'b00000000000000000000000000000000; //zero		//Register File initialized with random values
         	mem_reg[1] = 32'b00000000000000000000000000000001; //assembler temp
         	mem_reg[2] = 32'b00000000000000000000000000001000; //v0
         	mem_reg[3] = 32'b00000000000000000000000000000110; //v1
