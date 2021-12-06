@@ -1,14 +1,13 @@
 module PC(
-	input reg inaddr,
+	input [31:0] inaddr,
 	input clk,
-	input reset,
-	output reg outaddr);
+	output [31:0] outaddr);
 	
-	always @(posedge clk or reset) begin
-		if (reset ==1 )begin 
-			outaddr = 32'b00000000000000000000000000000000;
-		end
-		else 
-		outaddr = inaddr;
+	reg [31:0] temp;
+	
+	always @(posedge clk ) begin
+		temp = inaddr;
 	end
+	
+	assign outaddr= temp;
 endmodule
