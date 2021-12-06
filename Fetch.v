@@ -4,11 +4,13 @@ module Fetch(
 	output [31:0] inst,
 	output [31:0] currentAddr);
 	
-	wire [31:0] current,instruction,previous,AdderResult;
+	wire [31:0] current,instruction,previous,AdderResult,bxx;
 	reg [31:0] check, bx1, ca1;
+		
+	assign bxx = BranchMuxResult;
 
-	PCAdder u2 (.address(currentAddr),.outaddress(AdderResult));
-	Jump u4 (.previousPC4(AdderResult),.instruction(inst),.MuxResult(BranchMuxResult),.Jump(Jump),.currentPC4(previous));
+	PCAdder u2 (.address(BranchMuxResult),.outaddress(AdderResult));
+	Jump u4 (.previousPC4(AdderResult),.instruction(inst),.MuxResult(bx1),.Jump(Jump),.clk(clk),.currentPC4(previous));
 	PC u1(.inaddr(previous),.clk(clk),.outaddr(currentAddr));
 	instruction_mem u3 (.addr_in(check),.reset(reset),.instr_out(inst));
 
@@ -17,13 +19,18 @@ module Fetch(
 	
 	//always @(posedge clk) begin
 	always@(posedge clk) begin
-		check = currentAddr;
 		if(reset == 1) begin
 			bx1 = 32'b100;
-			ca1 = 32'b0;
+			check = currentAddr;
+			//ca1 = 32'b0;
 		end
+		else begin
+			check = currentAddr;
+			bx1 = BranchMuxResult;
+		end
+		
 	end
 	
-	assign BranchMuxResult = bx1;
-	assign currentAddr = ca1;
+	//assign BranchMuxResult = bx1;
+	//assign currentAddr = ca1;
 endmodule
