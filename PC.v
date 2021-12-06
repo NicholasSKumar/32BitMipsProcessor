@@ -1,13 +1,19 @@
 module PC(
 	input [31:0] inaddr,
-	input clk,
-	output [31:0] outaddr);
+	input clk,reset,
+	input PCWrite,
+	output reg [31:0] outaddr);
 	
 	reg [31:0] temp;
 	
 	always @(posedge clk ) begin
-		temp = inaddr;
+		if (reset == 1'b1) begin
+			outaddr <= 32'b0;
+		end
+		else begin
+			if (PCWrite ==1) begin
+				outaddr <= inaddr;
+			end
+		end
 	end
-	
-	assign outaddr= temp;
 endmodule
