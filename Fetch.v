@@ -4,7 +4,8 @@ module Fetch(
 	output [31:0] inst,
 	output [31:0] currentAddr);
 	
-	reg [31:0] current,instruction,check,previous,AdderResult;
+	wire [31:0] current,instruction,previous,AdderResult;
+	reg [31:0] check;
 
 	PCAdder u2 (.address(currentAddr),.outaddress(AdderResult));
 	Jump u4 (.previousPC4(AdderResult),.instruction(inst),.MuxResult(BranchMuxResult),.Jump(Jump),.currentPC4(previous));
