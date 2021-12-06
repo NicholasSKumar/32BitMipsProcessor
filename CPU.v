@@ -22,7 +22,7 @@ module CPU();
 		clk = 1;
 	end
 
-	assign BranchMux = 32'b0;
+	//assign BranchMux = 32'b0;
 	
 	always #5 clk = ~clk;
 	
