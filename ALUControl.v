@@ -7,7 +7,7 @@ module ALUcontrol(
 always@(*)begin
 
 	if(ALUOp == 2'b00) begin
-		if (Instruction == 000100)begin 
+		if (Instruction == 6'b000100)begin 
 			ALUInput = 4'b0110;
 		end
 		else begin
@@ -16,10 +16,10 @@ always@(*)begin
 	end
 
 	else if(ALUOp == 2'b01)begin
-		if(Instruction == 010000) begin
+		if(Instruction == 6'b010000) begin
 			ALUInput = 4'b0101;	//mfhi
 		end
-		else if(Instruction == 010010) begin
+		else if(Instruction == 6'b010010) begin
 			ALUInput = 4'b0111;	//mflo
 		end
 		else ALUInput = 4'b0010;
