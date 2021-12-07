@@ -202,7 +202,7 @@ module Control(
 			Branch = 0;
 			MemRead = 0;
 			MemtoReg = 0;
-			ALUOp = 2'b00;
+			ALUOp = 2'bxx;
 			MemWrite = 0;
 			ALUSrc = 0;
 			RegWrite = 0;
