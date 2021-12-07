@@ -1,5 +1,5 @@
 module Fetch(
-	input [31:0] NextAddress, ExecuteMux,
+	input [31:0] NextAddress/*This is the same as ifOut*/, ExecuteMux,
 	input clk, reset,Jump,PCWrite,
 	output [31:0] inst,
 	output [31:0] ifOut);
