@@ -4,5 +4,5 @@ module MuxALUSRC(
 	input ALUSrc,
 	output [31:0] ALUvalue);
 
-	assign ALUvalue = (ALUSrc) ? regRead : signExnd;
+	assign ALUvalue = (ALUSrc) ? signExnd:regRead;
 endmodule 
