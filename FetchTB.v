@@ -7,7 +7,7 @@ module FetchTB();
 	
 	assign NextAddress = ifOut;
 
-	Fetch2 uut (.NextAddress(NextAddress),.ExecuteMux(Ex),.clk(clk),.reset(reset),.Jump(Jump),.inst(inst),.ifOut(ifOut),.PCWrite(PCWrite));
+	Fetch uut (.NextAddress(NextAddress),.ExecuteMux(Ex),.clk(clk),.reset(reset),.Jump(Jump),.inst(inst),.ifOut(ifOut),.PCWrite(PCWrite));
 	Execute u0 (.instruct(inst),.address(ifOut),.signExnd(32'b0),.mem1Read(32'b0),.mem2Read(32'b0),.ALUSrc(1'b0),.Branch(1'b0),.FunctC(4'b0000),.ALUOp(2'b01),.ALUResult(result),.MX2(Ex));
 	
 	assign NextAddress = (reset) ? 32'b00000000000000000000000000000000:NextAddress;
