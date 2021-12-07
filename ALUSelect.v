@@ -8,7 +8,7 @@ module ALUSelect(
 	reg [31:0] him, lom, hid, lod;
 	reg flag;
 	
-	wire [31:0] add,sub,quo,rem;
+	wire [31:0] add,sub,quo,rem,SLT;
 	wire [63:0] mul;
 	ThirtyTwoBitSub u1 (.B(B),.A(A),.cin(1'b0),.Diff(add));
 	ThirtyTwoBitSub u2 (.B(B),.A(A),.cin(1'b1),.Diff(sub));
@@ -45,8 +45,11 @@ module ALUSelect(
 			4'b0111: begin			//madeup FunctC mflo
 				ALUOut = (flag) ? lom : lod;
 			end
+			4'b1110: begin 
+				ALUOut = (sub[31]) ? 1'b1 : 1'b0;
+			end
 
-			default: ALUOut = 32'bxxxxxxxxxxxxxxxxx11xxxxxxxxxxxxx;
+			default: ALUOut = 32'bxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
 		endcase
 		if (ALUOut == 0) Zero = 1;
 		else Zero = 0;
