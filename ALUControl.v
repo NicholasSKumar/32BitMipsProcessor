@@ -35,7 +35,7 @@ always@(*)begin
 
 		6'b100101: ALUInput = 4'b0001; //or ww
 
-		6'b101010: ALUInput = 4'b1110; //slt ww
+		6'b101010: ALUInput = 4'b1110; //slt ww new define
 
 		6'b100100: ALUInput = 4'b0000; //and ww
 
