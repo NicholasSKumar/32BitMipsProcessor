@@ -4,5 +4,5 @@ module MuxJump(
 	input [31:0] OtherAddr,
 	output [31:0] Addr);
 
-	assign Addr = (Jump) ? ALUResult : OtherAddr;
+	assign Addr = (Jump) ? ALUResult:OtherAddr;
 endmodule 
