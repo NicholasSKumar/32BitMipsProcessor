@@ -15,42 +15,35 @@ module CPU();
 	wire [31:0] signExnd,ALUResult;
 	wire [31:0] MemoryRead,WriteData;
 	wire [31:0] ExecuteMux;
-	wire [31:0] ifOut;
+	wire [31:0] ifOut,JOut;
+	
+	//reg [31:0] temp;
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-/////////////////////////////INITIAL BLOCKS///////////////////////////////////////////////////////
 	initial begin
-		reset = 1;
-		PCWrite = 0;
-		NextAddress = 32'b00000000000000000000000000000100;
-		#1
-		reset = 0;
-		clk = 1;
-		PCWrite = 1;
-		//#1
-		//NextAddress = 32'b00000000000000000000000000001000;
-		//#1
-		//NextAddress = 32'b00000000000000000000000000001100;
+	clk = 0;
+	reset = 1;
+	PCWrite = 0;
+	#2
+	reset = 0;
+	PCWrite = 1;
 	end
-	always #0.5 clk = ~clk;
-	//assign BranchMux = 32'b0;
-	
-	//always #5 clk = ~clk;
-	
+	always #1 clk = ~clk;
 	
 	
 ///////////////////////////INSTANCIATIONS////////////////////////////////////////////////////////
 	//Done
 	Control C0(.Inst(Inst[31:26]), .RegDest(RegDest), .Jump(Jump), .Branch(Branch), .MemRead(MemRead), .MemtoReg(MemtoReg), .ALUOp(ALUOp), .MemWrite(MemWrite), .ALUSrc(ALUSrc), .RegWrite(RegWrite));
 	//Done
-	ALUcontrol ALUC0(.ALUOp(ALUOp), .Instruction(Inst[5:0]), .ALUInput(FunctC));
+	ALUcontrol ALUC0(.ALUOp(ALUOp), .Instruction(Inst[31:26]), .ALUInput(FunctC));
 	//Done
-	Fetch F0(.NextAddress(NextAddress), .ExecuteMux(ExecuteMux), .clk(clk), .reset(reset), .Jump(Jump), .inst(Inst), .ifOut(ifOut),.PCWrite(PCWrite));
+	Fetch F0(.NextAddress(JOut), .ExecuteMux(JOut), .clk(clk), .reset(reset), .Jump(Jump), .inst(Inst), .ifOut(ifOut),.PCWrite(PCWrite));
+	//
+	Jump u4 (.previousPC4(ifOut),.instruction(Inst),.BranchMuxResult(ExecuteMux),.Jump(Jump),.currentPC4(JOut));
 	//Done
 	Decode D0(.rd_out1(mem1RD), .rd_out2(mem2RD), .sign_extend(signExnd), .instruction(Inst), .wr_data(WriteData), .RegDst(RegDest), .RegWrite(RegWrite));
 	//Done
-	Execute E0(.instruct(Inst), .address(NextAddress), .signExnd(signExnd), .mem1Read(mem1RD), .mem2Read(mem2RD), .ALUSrc(ALUSrc), .Branch(Branch), .FunctC(FunctC), .ALUOp(ALUOp), .ALUResult(ALUResult), .MX2(ExecuteMux));
+	Execute E0(.instruct(Inst), .address(ifOut), .signExnd(signExnd), .mem1Read(mem1RD), .mem2Read(mem2RD), .ALUSrc(ALUSrc), .Branch(Branch), .FunctC(FunctC), .ALUOp(ALUOp), .ALUResult(ALUResult), .MX2(ExecuteMux));
 	//Done
 	MEM M0(.addr_in(ALUResult), .wr_data(mem2RD), .MemWrite(MemWrite), .MemRead(MemRead), .clk(clk), .rd_data(MemoryRead));
 	//Done
