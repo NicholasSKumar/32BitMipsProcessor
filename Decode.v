@@ -1,7 +1,7 @@
-module Decode(rd_out1, rd_out2, sign_extend, instruction, wr_data, RegDst, RegWrite);
+module Decode(rd_out1, rd_out2, sign_extend, instruction, wr_data, RegDst, RegWrite,clk);
 	output [31:0] rd_out1, rd_out2, sign_extend;
 	input [31:0] instruction, wr_data;
-	input RegDst, RegWrite;
+	input RegDst, RegWrite,clk;
 	//reg [5:0] cont_in;
 	wire [4:0] WriteReg;
 	wire [4:0] rd_reg1, rd_reg2, wr_reg;

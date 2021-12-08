@@ -51,8 +51,12 @@ module reg_file(wr,addr1,addr2,rdout1,rdout2,addr3,data3,clk);
 			mem_reg[addr3] = data3;
 		end
 	end	
+	//always @(negedge clk) begin
+		// rdout1 = mem_reg[addr1];
+		// rdout2 = mem_reg[addr2];
 		assign rdout1 = mem_reg[addr1];
 		assign rdout2 = mem_reg[addr2];
+	//end
 
 
 endmodule

@@ -6,9 +6,6 @@ module CPU(
 	wire RegDest, Jump, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
 	wire [1:0] ALUOp;
 	wire [3:0] FunctC;
-//////////////////////////InNOuts that we do manually//////////////////////////////////////////////\
-
-	//reg PCWrite,reset,clk;
 
 ////////////////////////////WIRE CONNECTIONS///////////////////////////////////////////////////////
 	wire [31:0] Inst;
@@ -17,20 +14,6 @@ module CPU(
 	wire [31:0] MemoryRead,WriteData;
 	wire [31:0] ExecuteMux;
 	wire [31:0] ifOut,JOut;
-	
-	//reg [31:0] temp;
-//////////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	initial begin
-	clk = 0;
-	reset = 1;
-	PCWrite = 0;
-	#2
-	reset = 0;
-	PCWrite = 1;
-	end
-	always #1 clk = ~clk;
-	*/
 	
 ///////////////////////////INSTANCIATIONS////////////////////////////////////////////////////////
 	//Done
@@ -42,7 +25,7 @@ module CPU(
 	//
 	Jump u4 (.previousPC4(ifOut),.instruction(Inst),.BranchMuxResult(ExecuteMux),.Jump(Jump),.currentPC4(JOut));
 	//Done
-	Decode D0(.rd_out1(mem1RD), .rd_out2(mem2RD), .sign_extend(signExnd), .instruction(Inst), .wr_data(WriteData), .RegDst(RegDest), .RegWrite(RegWrite));
+	Decode D0(.rd_out1(mem1RD), .rd_out2(mem2RD), .sign_extend(signExnd), .instruction(Inst), .clk(clk), .wr_data(WriteData), .RegDst(RegDest), .RegWrite(RegWrite));
 	//Done
 	Execute E0(.instruct(Inst), .address(ifOut), .signExnd(signExnd), .mem1Read(mem1RD), .mem2Read(mem2RD), .ALUSrc(ALUSrc), .Branch(Branch), .FunctC(FunctC), .ALUOp(ALUOp), .ALUResult(ALUResult), .MX2(ExecuteMux));
 	//Done
