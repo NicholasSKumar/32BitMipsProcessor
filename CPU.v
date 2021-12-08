@@ -20,6 +20,9 @@ module CPU(
 		assign outAddr = JOut;
 		assign outInstruct = Inst;
 		assign outALU = ALUResult;
+		
+////////////////////////MemInst/////////////////////////////////////////////////////////////////
+// Quartus Prime Verilog Template
 	
 ///////////////////////////INSTANCIATIONS////////////////////////////////////////////////////////
 	//Done
@@ -40,3 +43,4 @@ module CPU(
 	WriteBack WB0(.wr_data(WriteData), .alu_result(ALUResult), .rd_data(MemoryRead), .MemtoReg(MemtoReg));
 
 endmodule
+
