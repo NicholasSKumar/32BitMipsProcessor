@@ -1,6 +1,7 @@
 `timescale 1ns/100ps
 module CPU(
-	input PCWrite, reset,clk);
+	input PCWrite, reset,clk,
+	output [31:0] outAddr,outInstruct,outALU);
 	
 ///////////////////////////CONTROL CONNECTIONS/////////////////////////////////////////////////////
 	wire RegDest, Jump, Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite;
@@ -16,7 +17,9 @@ module CPU(
 	wire [31:0] ifOut,JOut;
 
 /////////////////////////INITAL BLOCK//////////////////////////////////////////////////////////////
-
+		assign outAddr = JOut;
+		assign outInstruct = Inst;
+		assign outALU = ALUResult;
 	
 ///////////////////////////INSTANCIATIONS////////////////////////////////////////////////////////
 	//Done
