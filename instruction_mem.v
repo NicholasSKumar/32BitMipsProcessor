@@ -4,7 +4,7 @@ module  instruction_mem(input [31:0] addr_in, output reg [31:0] instr_out);
 	initial begin
 		$readmemh("instructionmem.list", my_memory);
 	end
-	reg [7:0] readReg0,readReg1,readReg2,readReg3;
+	wire [7:0] readReg0,readReg1,readReg2,readReg3;
 	assign readReg0 = addr_in;
 	assign readReg1 = addr_in + 32'h1;
 	assign readReg2 = addr_in + 32'h2;
