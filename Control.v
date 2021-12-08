@@ -10,9 +10,7 @@ module Control(
 	output reg MemWrite,
 	output reg ALUSrc,
 	output reg RegWrite);
-	//issue using always @(*) could be that if we have two add statements the input wouldnt change 
-	//and nothing would update
-	//always @(posedge clk
+	
 	always @(*) begin 
 		case (Inst)
 
